@@ -10,6 +10,10 @@ public:
 	Image(SDL_Rect src, SDL_FRect dst , const char* key);
 	void Update() {};
 	void Render();
+
+	void UpdatePosition(const SDL_FPoint& position);
+
+	SDL_Texture* m_texture;
 private:
 	std::string m_key;
 };

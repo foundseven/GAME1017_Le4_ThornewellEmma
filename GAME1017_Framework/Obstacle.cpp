@@ -1,5 +1,8 @@
 #include "Obstacle.h"
+#include "TextureManager.h"
 #include "RenderManager.h"
+#include "StateManager.h"
+
 
 Obstacle::Obstacle(const SDL_FRect dst, bool hasImage, const SDL_Rect src, const char* key)
 	:m_hasImage(hasImage), m_pImage(nullptr)
@@ -8,6 +11,8 @@ Obstacle::Obstacle(const SDL_FRect dst, bool hasImage, const SDL_Rect src, const
 	if (m_hasImage)
 	{
 		//create a new obst based on an image
+		TEMA::Load("../Assets/img/bush.png", "obs");
+		m_pImage = new Image(m_srcRect, m_dstRect, "obs");
 		//hints in outline
 	}
 }
@@ -18,6 +23,7 @@ Obstacle::~Obstacle()
 	{
 		delete m_pImage;
 		m_pImage = nullptr;
+
 	}
 }
 
@@ -27,19 +33,25 @@ void Obstacle::Update()
 	if (m_hasImage)
 	{
 		//update the images dest rect
+		/*m_dstRect.x = m_pos.x;
+		m_dstRect.y = m_pos.y;*/
+		m_pImage->UpdatePosition(m_pos);
 	}
 }
 
 void Obstacle::Render()
 {
 	SDL_Rect m_dst = { m_pos.x, m_pos.y, 128, 128 };
-	if (m_hasImage)
+	if (m_hasImage && m_pImage)
 	{
 		//render the image
+		//this is where the image will go
+		//SDL_RenderCopyExF(REMA::GetRenderer(), TEMA::GetTexture("obs"), &m_srcRect, &m_dstRect, 0, nullptr, SDL_FLIP_NONE);
+		m_pImage->Render();
 
 		//temp ed box
-		SDL_SetRenderDrawColor(REMA::GetRenderer(), 255, 102, 94, 255);
-		SDL_RenderFillRect(REMA::GetRenderer(), &m_dst );	
+		//SDL_SetRenderDrawColor(REMA::GetRenderer(), 255, 102, 94, 255);
+		//SDL_RenderFillRect(REMA::GetRenderer(), &m_dst);
 	}
 	SDL_SetRenderDrawColor(REMA::GetRenderer(), 64, 0, 255, 255);
 	SDL_RenderDrawRect(REMA::GetRenderer(), &m_dst);

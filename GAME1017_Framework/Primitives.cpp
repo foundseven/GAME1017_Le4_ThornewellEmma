@@ -7,7 +7,16 @@ Image::Image(SDL_Rect src, SDL_FRect dst, const char* key) :Sprite(src, dst), m_
 
 void Image::Render()
 {
-	SDL_RenderCopyF(REMA::GetRenderer(), TEMA::GetTexture(m_key), &m_src, &m_dst);
+	if (m_texture)
+	{
+		SDL_RenderCopyF(REMA::GetRenderer(), TEMA::GetTexture(m_key), &m_src, &m_dst);
+	}
+}
+
+void Image::UpdatePosition(const SDL_FPoint& position)
+{
+	m_dst.x = position.x;
+	m_dst.y = position.y;
 }
 
 Line::Line(SDL_FPoint start, SDL_FPoint end, SDL_Color col) :
@@ -76,3 +85,4 @@ void Label::UseFont(std::string key)
 	m_font = FOMA::GetFont(key);
 	SetText(m_string);
 }
+

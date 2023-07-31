@@ -176,7 +176,9 @@ void GameState::Enter()
 {
 	cout << "Entering GameState..." << endl;
 	FOMA::Load("../Assets/img/ltype.TTF", "ltype24", 24);
+	TEMA::Load("../Assets/img/image2.png", "1");
 
+	//AddChild("1", new Obstacle());
 	AddChild("obstacles", new ObstacleRow());
 
 	SOMA::SetSoundVolume(32);
