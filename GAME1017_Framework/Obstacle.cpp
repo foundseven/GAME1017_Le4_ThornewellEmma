@@ -2,6 +2,7 @@
 #include "TextureManager.h"
 #include "RenderManager.h"
 #include "StateManager.h"
+#include <iostream>
 
 
 Obstacle::Obstacle(const SDL_FRect dst, bool hasImage, const SDL_Rect src, const char* key)
@@ -11,8 +12,8 @@ Obstacle::Obstacle(const SDL_FRect dst, bool hasImage, const SDL_Rect src, const
 	if (m_hasImage)
 	{
 		//create a new obst based on an image
-		TEMA::Load("../Assets/img/bush.png", "obs");
-		m_pImage = new Image(m_srcRect, m_dstRect, "obs");
+		m_pImage = new Image(src, dst, key);
+
 		//hints in outline
 	}
 }
@@ -36,13 +37,15 @@ void Obstacle::Update()
 		/*m_dstRect.x = m_pos.x;
 		m_dstRect.y = m_pos.y;*/
 		m_pImage->UpdatePosition(m_pos);
+		
+
 	}
 }
 
 void Obstacle::Render()
 {
 	SDL_Rect m_dst = { m_pos.x, m_pos.y, 128, 128 };
-	if (m_hasImage && m_pImage)
+	if (m_hasImage)
 	{
 		//render the image
 		//this is where the image will go

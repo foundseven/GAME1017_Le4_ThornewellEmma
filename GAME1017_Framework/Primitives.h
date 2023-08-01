@@ -13,7 +13,6 @@ public:
 
 	void UpdatePosition(const SDL_FPoint& position);
 
-	SDL_Texture* m_texture;
 private:
 	std::string m_key;
 };

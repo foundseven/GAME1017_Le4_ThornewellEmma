@@ -13,6 +13,7 @@ public: // Methods.
 
 private: // Properties.
 	std::vector<Obstacle*> m_obstacles;
+
 	int m_gapCtr, m_gapMax;
 };
 

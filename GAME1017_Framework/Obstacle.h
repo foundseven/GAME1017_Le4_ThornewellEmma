@@ -20,6 +20,9 @@ public:
 private:
 	bool m_hasImage;
 	Image* m_pImage; // Pointer to visual component.
+	Image* m_pImage2; // Pointer to visual component.
+	Image* m_pImage3; // Pointer to visual component.
+
 	SDL_FPoint m_pos; // Position on screen.
 
 	SDL_Rect m_srcRect; // Source rectangle for texture.

@@ -6,11 +6,9 @@
 Image::Image(SDL_Rect src, SDL_FRect dst, const char* key) :Sprite(src, dst), m_key(key) {}
 
 void Image::Render()
-{
-	if (m_texture)
-	{
+{	
 		SDL_RenderCopyF(REMA::GetRenderer(), TEMA::GetTexture(m_key), &m_src, &m_dst);
-	}
+	
 }
 
 void Image::UpdatePosition(const SDL_FPoint& position)

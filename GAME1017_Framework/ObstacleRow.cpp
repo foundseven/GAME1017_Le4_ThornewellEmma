@@ -18,11 +18,24 @@ void ObstacleRow::Update()
 		delete m_obstacles[0];
 		m_obstacles[0] = nullptr;
 		m_obstacles.erase(m_obstacles.begin());
+		m_gapCtr++;
+
 		//add a new element to the end
-		if (m_gapCtr++ % m_gapMax == 0) //need to render the image here
-
-			m_obstacles.push_back(new Obstacle({ 1024.0f, 384.0f, 128.0f, 128.0f }, true,{}, "obs"));
-
+		if (m_gapCtr % m_gapMax == 0) //need to render the image here
+		{
+			//img 1
+			m_obstacles.push_back(new Obstacle({ 1024.0f, 384.0f, 128.0f, 128.0f }, true, { 0, 0, 758, 798 }, "obs"));
+		}
+		else if (m_gapCtr % m_gapMax == 1)
+		{
+			//img 2
+			m_obstacles.push_back(new Obstacle({ 1024.0f, 384.0f, 128.0f, 128.0f }, true, { 0, 0, 758, 798 }, "obs2"));
+		}
+		else if (m_gapCtr % m_gapMax == 2)
+		{
+			//img 3
+			m_obstacles.push_back(new Obstacle({ 1024.0f, 384.0f, 128.0f, 128.0f }, true, { 0, 0, 758, 798 }, "obs3"));
+		}
 		else
 			m_obstacles.push_back(new Obstacle({ 1024.0f, 384.0f, 128.0f, 128.0f }));
 
